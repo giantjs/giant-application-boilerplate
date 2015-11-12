@@ -2,20 +2,13 @@
 module.exports = function (grunt) {
     "use strict";
 
-    var TARGETS = {
-            development: 'development',
-            production : 'production'
-        },
-        $gruntTools = require('giant-grunt-tools'),
+    var $gruntTools = require('giant-grunt-tools'),
         multiTasks = [].toMultiTaskCollection(),
         gruntTasks = [].toGruntTaskCollection(),
-        publicFolder = 'public/',
-        targetName = TARGETS[grunt.option('target')] || 'development';
+        publicFolder = 'public/';
 
     $gruntTools.GruntProxy.create()
         .setGruntObject(grunt);
-
-    grunt.log.ok("Doing \x1b[1;36m" + targetName.toUpperCase() + "\x1b[0m build.");
 
     'clean'
         .toMultiTask({
@@ -74,7 +67,7 @@ module.exports = function (grunt) {
                 options: {
                     title  : "Giant Project",
                     success: true,
-                    message: [targetName.toUpperCase(), "build completed."].join(" ")
+                    message: "Build completed."
                 }
             }
         })
